@@ -1,0 +1,23 @@
+{% extends 'master/base.html' %}
+
+{% block title %} - My Account{% endblock %}
+
+{% block content %}
+	<table>
+		<tbody>
+			<tr>
+				<td>Fullname</td>
+				<td>{{ user.full_name }}</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>{{ user.email }}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="{% url 'password_change' %}">Change Password</a></td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}
+
