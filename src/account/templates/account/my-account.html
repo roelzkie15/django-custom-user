@@ -7,7 +7,7 @@
 		<tbody>
 			<tr>
 				<td>Fullname</td>
-				<td>{{ user.full_name }}</td>
+				<td>{{ user.name }}</td>
 			</tr>
 			<tr>
 				<td>Email</td>
@@ -15,6 +15,7 @@
 			</tr>
 			<tr>
 				<td></td>
+				<td><a href="{% url 'account:edit' %}">Edit Profile</a></td>
 				<td><a href="{% url 'password_change' %}">Change Password</a></td>
 			</tr>
 		</tbody>

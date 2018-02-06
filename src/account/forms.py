@@ -49,3 +49,13 @@ class UserChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+
+class UserUpdateForm(forms.ModelForm):
+    '''
+    A form for updating users in the non-admin template.
+    Includes only basic fields
+    '''
+
+    class Meta:
+        model = User
+        fields = ('email', 'name')
