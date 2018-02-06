@@ -11,7 +11,7 @@
 	<hr>
 
 	{% if user.is_authenticated %}
-		Welcome <a href="{% url 'account:my-account' %}">{{ user.full_name }}</a>! | <a href="{% url 'logout' %}">Sign out</a>
+		Welcome <a href="{% url 'account:detail' %}">{{ user.name }}</a>! | <a href="{% url 'logout' %}">Sign out</a>
 	{% else %}
 		<a href="{% url 'login' %}">login</a>
 		<a href="{% url 'account:sign-up' %}">signup</a>
