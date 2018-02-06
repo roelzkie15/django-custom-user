@@ -16,9 +16,13 @@ How to use?
 - `$ cd src && python manage.py runserver`
 - open url http://localhost:8000/admin/
 
+## Current Feature
+- Custom user model derived from AbstractUserModel
+- Custom user model create and change form function
+- User authentication on template
+- Change password and reset with email validation using [SendGrid](https://sendgrid.com/)
+
 ## Roadmap
- - ~~User authentication on template~~
- - Change password and reset with email validation using [SendGrid](https://sendgrid.com/)
  - Material Design
  - Social authentication
  
