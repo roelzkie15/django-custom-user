@@ -1,7 +1,7 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
 from django.contrib.sites.shortcuts import get_current_site
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes
 from django.utils.encoding import force_text
@@ -16,7 +16,7 @@ from .tokens import account_activation_token
 
 from django.template.loader import render_to_string
 
-class Signup(CreateView, UserPassesTestMixin):
+class Signup(CreateView):
     form_class = UserSignupForm
     success_url = reverse_lazy('account:notice')
     template_name = 'account/sign-up.html'
@@ -42,8 +42,11 @@ class Signup(CreateView, UserPassesTestMixin):
 
         return super().form_valid(form)
 
-    def test_func(self):
-        return not self.user.is_authenticated
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            # Redirect to home page since this user is already authenticated
+            return redirect('home')
+        return super().dispatch(*args, **kwargs)
 
 class UserDetail(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy('login')
@@ -62,6 +65,12 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
 
 class EmailVerificationNotice(TemplateView):
     template_name = 'account/email-verification-notice.html'
+
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            # Redirect to home page since this user is already authenticated
+            return redirect('home')
+        return super().dispatch(*args, **kwargs)
 
 def activate(request, uid, token):
     '''
