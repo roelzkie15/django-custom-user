@@ -21,9 +21,9 @@ How to use?
 - Custom user model create and change form function
 - User authentication on template
 - Change password and reset with email validation using [SendGrid](https://sendgrid.com/)
-
+- Account verification when sign up via email
+ 
 ## Roadmap
- - Material Design
- - Account verification when sign up via email
  - Social authentication
+ - Material Design
  
