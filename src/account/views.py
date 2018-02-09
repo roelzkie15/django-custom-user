@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
 from django.contrib.sites.shortcuts import get_current_site
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes
 from django.utils.encoding import force_text
@@ -21,24 +21,26 @@ class Signup(CreateView):
     success_url = reverse_lazy('account:notice')
     template_name = 'account/sign-up.html'
 
-    def form_valid(self, form):
+    def form_valid(self, form, commit=True):
 
         # Save the provided password in hashed format
         user = form.save(commit=False)
         user.set_password(form.cleaned_data['password1'])
-        user.save()
 
-        # Prepare email activation content
-        current_site = get_current_site(self.request)
-        subject = 'Activate your account'
-        message = render_to_string('account/account-activation-email.html', {
-            'user': user,
-            'domain': current_site.domain,
-            'uid': force_text(urlsafe_base64_encode(force_bytes(user.pk))),
-            'token': account_activation_token.make_token(user),
-        })
+        if commit:
+            user.save()
 
-        user.email_user(subject, message)
+            # Prepare email activation content
+            current_site = get_current_site(self.request)
+            subject = 'Activate your account'
+            message = render_to_string('account/account-activation-email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': force_text(urlsafe_base64_encode(force_bytes(user.pk))),
+                'token': account_activation_token.make_token(user),
+            })
+
+            user.email_user(subject, message)
 
         return super().form_valid(form)
 
@@ -72,7 +74,7 @@ class EmailVerificationNotice(TemplateView):
             return redirect('home')
         return super().dispatch(*args, **kwargs)
 
-def activate(request, uid, token):
+def activate(request, uid, token, backend='django.contrib.auth.backends.ModelBackend'):
     '''
     Explicitly activate newly registered user account
     :param request:
@@ -89,7 +91,7 @@ def activate(request, uid, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
+        login(request, user, backend)
         return redirect('home')
     else:
         return render(request, 'account/account-verification-invalid-notice.html')

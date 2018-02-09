@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core.mail import send_mail
+from django.dispatch import receiver
 
+from allauth.account.signals import  user_signed_up
 
 class UserManager(BaseUserManager):
-    def _create_user(self, email, name=None, is_admin=False, is_staff=False, is_active=False, password=None):
+    def _create_user(self, email, username=None, is_admin=False, is_staff=False, password=None):
         'Method for actual creation of a user'
 
         if not email:
@@ -12,34 +14,34 @@ class UserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            name=name,
+            username=username,
             is_admin=is_admin,
-            is_staff=is_staff,
-            is_active=is_active
+            is_staff=is_staff
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, email, name=None, password=None):
+    def create_user(self, email, username=None, password=None):
         'Create a simple user'
-        return self._create_user(email=email, name=name, password=password)
+        return self._create_user(email=email, username=username, password=password)
 
-    def create_staffuser(self, email, name=None, password=None):
+    def create_staffuser(self, email, username=None, password=None):
         'Create a staff user'
-        return self._create_user(email=email, name=name, is_staff=True, password=password)
+        return self._create_user(email=email, username=username, is_staff=True, password=password)
 
-    def create_superuser(self, email, name=None, password=None):
+    def create_superuser(self, email, username=None, password=None):
         'Create a super user'
         return self._create_user(
-            email=email, name=name, is_admin=True,
-            is_staff=True, is_active=True, password=password
+            email=email, username=username, is_admin=True,
+            is_staff=True, password=password
         )
 
 class User(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True)
-    name = models.CharField(max_length=150)
+    username = models.CharField(max_length=150, unique=True)
+    name = models.CharField(max_length=150, blank=True)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -49,7 +51,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['username']
 
     def __str__(self):
         return f'{self.email}'
@@ -58,7 +60,7 @@ class User(AbstractBaseUser):
         return f'{self.name}'
 
     def get_short_name(self):
-        return f'{self.name}'
+        return f'{self.username}'
 
     def has_perm(self, perm, obj=None):
         'Does the user have a specific permission?'
@@ -86,3 +88,8 @@ class User(AbstractBaseUser):
     def has_admin_perm(self):
         'Is the user is super admin?'
         return self.is_admin
+
+@receiver(user_signed_up)
+def user_signed_up_(request, user, **kwargs):
+    user.is_active = True # Only for allauth account to avoid inactive user authentication.
+    user.save()
