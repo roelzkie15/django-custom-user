@@ -12,7 +12,7 @@ How to use?
 - `$ pipenv install `
 - `$ cd src && python manage.py makemigrations && python manage.py migrate && python manage.py runserver`
 - To create superuser `$ python manage.py createsuperuser`
-- Open url http://localhost:8000
+- Open [localhost](http://127.0.0.1:8000) url.
 
 ## Current Feature
 - Custom user model derived from AbstractBaseUser with email as username field.
