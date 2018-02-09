@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,10 +12,12 @@
 	<hr>
 
 	{% if user.is_authenticated %}
-		Welcome <a href="{% url 'account:detail' %}">{{ user.name }}</a>! | <a href="{% url 'logout' %}">Sign out</a>
+		Welcome <a href="{% url 'account:detail' %}">{{ user.username }}</a>! | <a href="{% url 'logout' %}">Sign out</a>
 	{% else %}
-		<a href="{% url 'login' %}">login</a>
-		<a href="{% url 'account:sign-up' %}">signup</a>
+		<a href="{% url 'login' %}">Login</a>
+		<a href="{% url 'account:sign-up' %}">Sign up</a> Or
+		<a href="{% provider_login_url 'github' %}">Sign up with Github</a> Or
+		<a href="{% provider_login_url 'google' %}">Sign up with Google</a>
 	{% endif %}
 
 	<div>

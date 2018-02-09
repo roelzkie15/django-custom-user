@@ -23,4 +23,5 @@ urlpatterns = [
     path('', BaseView.as_view(), name='home'),
     path('', include('account.urls')),
     path('', include('django.contrib.auth.urls')),
+    path('social-api/auth/', include('allauth.urls'))
 ]

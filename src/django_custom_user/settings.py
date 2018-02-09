@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,10 +35,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # django-allauth
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.facebook',
 
     # Apps
-    'account',
+
+    'account.apps.AccountConfig',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_custom_user.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
@@ -82,7 +93,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -102,6 +112,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# https://docs.djangoproject.com/en/2.0/ref/settings/#authentication-backends
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -116,7 +133,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
@@ -127,23 +143,37 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-
 # Substituting a custom User model
 # https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#substituting-a-custom-user-model
-AUTH_USER_MODEL = 'account.User'
+
+AUTH_USER_MODEL = 'default_account.User'
 
 # Redirection in auth system
 # https://docs.djangoproject.com/en/2.0/ref/settings/#login-redirect-url
+
 LOGIN_REDIRECT_URL = '/'
+
 # https://docs.djangoproject.com/en/2.0/ref/settings/#logout-redirect-url
+
 LOGOUT_REDIRECT_URL = '/'
 
 # SENDING EMAIL
 # https://docs.djangoproject.com/en/2.0/topics/email/#smtp-backend
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = os.environ.get('SG_USERNAME') # use your username
-EMAIL_HOST_PASSWORD = os.environ.get('SG_PASSWORD') # use your password
+EMAIL_HOST_USER = os.environ.get('SG_USERNAME')  # use your username
+EMAIL_HOST_PASSWORD = os.environ.get('SG_PASSWORD')  # use your password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# http://django-allauth.readthedocs.io/en/latest/configuration.html
+
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL  = '/'
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True

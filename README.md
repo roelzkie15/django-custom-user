@@ -9,7 +9,7 @@ Dependencies
 
 How to use?
 - Clone repository
-- `$ pipenv install `
+- `$ pipenv install`
 - `$ cd src && python manage.py makemigrations && python manage.py migrate && python manage.py runserver`
 - To create superuser `$ python manage.py createsuperuser`
 - Open [localhost](http://127.0.0.1:8000) url.
@@ -20,8 +20,10 @@ How to use?
 - Authentication and edit user profile in the template.
 - Change password and reset with email validation using [SendGrid](https://sendgrid.com/).
 - Account verification when sign up via email SendGrid.
+- Currently supported social auth (GitHub, Google+)
  
 ## Roadmap
- - Social authentication (Github, Google+, Twitter, Facebook)
+ - Social authentication (Twitter, Facebook)
+ - Linking of multiple social account to email address (django-allauth)
  - Material Design
  
