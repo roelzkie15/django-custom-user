@@ -8,13 +8,11 @@ Dependencies
 - Get [pipenv](https://docs.pipenv.org/)_(I recommend this)_ for virtualenvs and package manager.
 
 How to use?
-- clone repository
+- Clone repository
 - `$ pipenv install `
-- `$ python manage.py makemigrations`
-- `$ python manage.py migrate`
-- Create a super user by executing `$ python manage.py createsuperuser`
-- `$ cd src && python manage.py runserver`
-- open url http://localhost:8000
+- `$ cd src && python manage.py makemigrations && python manage.py migrate && python manage.py runserver`
+- To create superuser `$ python manage.py createsuperuser`
+- Open url http://localhost:8000
 
 ## Current Feature
 - Custom user model derived from AbstractBaseUser
