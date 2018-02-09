@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.core.mail import send_mail
 
 
 class UserManager(BaseUserManager):
@@ -66,6 +67,10 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         'Does the user have permissions to view the app `app_label`?'
         return True
+
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        """Send an email to this User."""
+        send_mail(subject, message, from_email, [self.email], **kwargs)
 
     @property
     def has_staff_perm(self):
