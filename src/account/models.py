@@ -1,9 +1,17 @@
 from django.db import models
+from django.dispatch import receiver
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core.mail import send_mail
-from django.dispatch import receiver
+from django.conf import settings
+from django.shortcuts import redirect,render
 
+from allauth.account import app_settings
 from allauth.account.signals import  user_signed_up
+from allauth.account.utils import perform_login, send_email_confirmation
+from allauth.exceptions import ImmediateHttpResponse
+from allauth.socialaccount.models import EmailAddress as s_emails
+from allauth.socialaccount.signals import pre_social_login
+from allauth.utils import get_user_model
 
 class UserManager(BaseUserManager):
     def _create_user(self, email, username=None, is_admin=False, is_staff=False, password=None):
@@ -93,3 +101,34 @@ class User(AbstractBaseUser):
 def user_signed_up_(request, user, **kwargs):
     user.is_active = True # Only for allauth account to avoid inactive user authentication.
     user.save()
+
+@receiver(pre_social_login)
+def pre_social_login_(sender, request, sociallogin, **kwargs):
+    '''
+    Resolve issue of existing email address. When signing up a social account with the existing
+    email address it will logged the existing user. And for security hole issue the account
+    will not successfully logged if their given email address are not verified.
+    To verify ownership of email this function will automatically send a verification link
+    to the given email and only legit user can access the said account.
+    :param sender:
+    :param request:
+    :param sociallogin:
+    :param kwargs:
+    :return:
+    '''
+
+    email = sociallogin.account.extra_data['email']
+    _user = get_user_model()
+    users = _user.objects.filter(email=email)
+    _s_emails = s_emails.objects.filter(email=email)
+    e_existing = _s_emails.exists()
+    u_existing = users.exists()
+
+    if u_existing :
+        if e_existing:
+            if _s_emails[0].verified:
+                perform_login(request, users[0], app_settings.EMAIL_VERIFICATION)
+                raise ImmediateHttpResponse(redirect(settings.LOGIN_REDIRECT_URL))
+
+        send_email_confirmation(request, users[0])
+        raise ImmediateHttpResponse(render(request, 'account/verification_sent.html', {}))
