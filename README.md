@@ -21,9 +21,9 @@ How to use?
 - Change password and reset with email validation using [SendGrid](https://sendgrid.com/).
 - Account verification when sign up via email SendGrid.
 - Currently supported social auth (GitHub, Google+)
+- Linking of multiple social account to existing email address (django-allauth)
  
 ## Roadmap
  - Social authentication (Twitter, Facebook)
- - Linking of multiple social account to email address (django-allauth)
  - Material Design
  
