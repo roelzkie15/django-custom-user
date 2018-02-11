@@ -1,13 +1,69 @@
 {% extends 'master/base.html' %}
+{% load socialaccount %}
 
-{% block title %} - Login{% endblock %}
+{% block title %} - Login {% endblock %}
 
-{% block content %}
-	<h2>Login</h2>
-	<form method="post">
-		{% csrf_token %}
-		{{ form.as_p }}
-	    <button type="submit">Login</button>
-		<a href="{% url 'password_reset' %}">Forget password?</a>
-	</form>
+{% block login %}
+	<div class="mdl-grid mdl-layout-center mdl-padding-large">
+		<div class="mdl-cell mdl-cell--4-col mdl-card mdl-shadow--2dp">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text">Welcome</h2>
+			</div>
+			<div class="mdl-card__supporting-text">
+				<form method="post">
+					{% csrf_token %}
+					{% for field in form %}
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-width-100">
+							<input class="mdl-textfield__input" type="text" name="{{ field.html_name }}"
+							       id="{{ field.id_for_label }}">
+							<label class="mdl-textfield__label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+						</div>
+
+						{% for error in field.errors %}
+						<span class="mdl-typography--caption mdl-color-text--red-500">{{ error }}</span>
+						{% endfor %}
+
+						{% if field.help_text %}
+						<p class="mdl-typography--body-1">{{ field.help_text|safe }}</p>
+						{% endif %}
+
+						{% if field.id_for_label == 'id_password' %}
+						<div class="mdl-typography--text-right">
+							<a style="text-decoration: none;" class="mdl-typography--caption mdl-color-text--primary"
+							   href="{% url 'password_reset' %}">Forget password?</a>
+						</div>
+						{% endif %}
+
+					{% endfor %}
+					<div class="mdl-width-100 mdl-typography--text-center mdl-padding-normal mdl-padding-top-large">
+						<button class="mdl-width-50 mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+						        type="submit">Login
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="mdl-card__actions mdl-card--border mdl-typography--text-center mdl-width-100">
+				<p class="mdl-typography--subhead mdl-typography--title-color-contrast">OR</p>
+				<a href="{% provider_login_url 'github' %}"
+				   class="mdl-button mdl-color-text--grey-900 mdl-js-button mdl-js-ripple-effect">
+					GitHub
+				</a>
+				<a href="{% provider_login_url 'google' %}"
+				   class="mdl-button mdl-color-text--red-500 mdl-js-button mdl-js-ripple-effect">
+					Google+
+				</a>
+				<a href="{% provider_login_url 'twitter' %}"
+				   class="mdl-button mdl-color-text--light-blue-400 mdl-js-button mdl-js-ripple-effect">
+					Twitter
+				</a>
+				<a href="{% provider_login_url 'facebook' %}"
+				   class="mdl-button mdl-color-text--light-blue-700 mdl-js-button mdl-js-ripple-effect">
+					Facebook
+				</a>
+			</div>
+		</div>
+		<!--<a href="{% url 'account:sign-up' %}">Sign up</a>-->
+
+	</div>
+
 {% endblock %}
