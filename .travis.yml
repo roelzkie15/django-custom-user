@@ -5,3 +5,5 @@ python:
 install:
   - pip install pipenv
   - pipenv install
+# command to run tests
+script: pytest
