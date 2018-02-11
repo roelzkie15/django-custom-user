@@ -20,10 +20,9 @@ How to use?
 - Authentication and edit user profile in the template.
 - Change password and reset with email validation using [SendGrid](https://sendgrid.com/).
 - Account verification when sign up via email SendGrid.
-- Currently supported social auth (GitHub, Google+, Twitter)
+- Social authentication (GitHub, Google+, Twitter)
 - Linking of multiple social account to existing email address (django-allauth)
  
 ## Roadmap
- - Social authentication (Facebook)
  - Material Design
  
