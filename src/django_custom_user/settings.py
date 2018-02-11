@@ -171,7 +171,7 @@ EMAIL_USE_TLS = True
 # http://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_ADAPTER = 'account.adapters.AppDefaultAccountAdapter'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
@@ -179,3 +179,13 @@ ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL  = '/'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 SOCIALACCOUNT_ADAPTER = 'account.adapters.AppDefaultSocialAccountAdapter'
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email'],
+    },
+    'twitter': {
+        'SCOPE': ['email'],
+    },
+}
