@@ -5,4 +5,4 @@ install:
   - pip install pipenv
   - pipenv install
 # command to run tests
-script: make test
+script: python manage.py test
