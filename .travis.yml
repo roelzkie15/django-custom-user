@@ -2,14 +2,3 @@ language: python
 python:
   - "3.6"
   - "nightly"
-  # PyPy versions
-  - "pypy"   # PyPy2 5.8.0
-  - "pypy3"  # Pypy3 5.8.0-beta0
-# command to install dependencies
-install:
-  - pipenv install
-# command to run tests
-script:
-  - pytest # or py.test for Python versions 3.5 and below
-virtualenv:
-  system_site_packages: true
