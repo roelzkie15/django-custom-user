@@ -15,9 +15,10 @@
 		Welcome <a href="{% url 'account:detail' %}">{{ user.username }}</a>! | <a href="{% url 'logout' %}">Sign out</a>
 	{% else %}
 		<a href="{% url 'login' %}">Login</a>
-		<a href="{% url 'account:sign-up' %}">Sign up</a> Or
-		<a href="{% provider_login_url 'github' %}">Sign up with Github</a> Or
-		<a href="{% provider_login_url 'google' %}">Sign up with Google</a>
+		<a href="{% url 'account:sign-up' %}">Sign up</a> OR
+		<a href="{% provider_login_url 'github' %}">Sign up with Github</a> OR
+		<a href="{% provider_login_url 'google' %}">Sign up with Google</a> OR
+		<a href="{% provider_login_url 'twitter' %}">Sign up with Twitter</a>
 	{% endif %}
 
 	<div>
