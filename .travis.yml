@@ -3,7 +3,7 @@ python:
   - "3.6"
   - "nightly"
 install:
-  - pip install pipenv
+  - pip install --user pipenv
   - pipenv install
 # command to run tests
-script: pytest
+script: make test
