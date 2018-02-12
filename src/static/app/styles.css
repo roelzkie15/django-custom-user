@@ -25,6 +25,10 @@ html, body {
     padding: 64px !important;
 }
 
+.mdl-padding-top-normal {
+    padding-top: 8px !important;
+}
+
 .mdl-padding-top-medium {
     padding-top: 16px !important;
 }

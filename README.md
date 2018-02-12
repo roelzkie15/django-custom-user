@@ -23,7 +23,3 @@ How to use?
 - Social authentication (GitHub, Google+, Twitter, Facebook)
 - Linking of multiple social account to existing email address (django-allauth)
 - Material Design
-
-## Roadmap
-
- 
