@@ -56,7 +56,7 @@ local_settings.py
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
-**/src/static-cdn/**
+static-cdn/
 
 
 # Flask stuff:
