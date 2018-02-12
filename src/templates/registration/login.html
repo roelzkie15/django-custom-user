@@ -39,6 +39,10 @@
 						<button class="mdl-width-50 mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
 						        type="submit">Login
 						</button>
+						<div class="mdl-padding-top-normal">
+							<span>Do not have any account?</span>
+							<a href="{% url 'account:sign-up' %}">Sign up!</a>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -64,8 +68,6 @@
 				</div>
 			</div>
 		</div>
-		<!--<a href="{% url 'account:sign-up' %}">Sign up</a>-->
-
 	</div>
 
 {% endblock %}

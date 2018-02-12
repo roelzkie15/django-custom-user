@@ -3,26 +3,26 @@
 {% block title %} - My Account{% endblock %}
 
 {% block content %}
-	<table>
-		<tbody>
-			<tr>
-				<td>Name</td>
-				<td>{{ user.name }}</td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td>{{ user.email }}</td>
-			</tr>
-			<tr>
-				<td>Username</td>
-				<td>{{ user.username}}</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><a href="{% url 'account:edit' %}">Edit Profile</a></td>
-				<td><a href="{% url 'password_change' %}">Change Password</a></td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="mdl-grid mdl-layout-center mdl-padding-large">
+		<div class="mdl-cell mdl-cell--4-col">
+			<h1 class="mdl-typography--subhead">My Account</h1>
+			<div class="mdl-grid">
+				<span class="mdl-cell mdl-cell--8-col mdl-typography--body-2">Name</span>
+				<span class="mdl-cell mdl-cell--4-col mdl-typography--body-1">{{ user.name }}</span>
+			</div>
+			<div class="mdl-grid">
+				<span class="mdl-cell mdl-cell--8-col mdl-typography--body-2">Email</span>
+				<span class="mdl-cell mdl-cell--4-col mdl-typography--body-1">{{ user.email }}</span>
+			</div>
+			<div class="mdl-grid">
+				<span class="mdl-cell mdl-cell--8-col mdl-typography--body-2">Username</span>
+				<span class="mdl-cell mdl-cell--4-col mdl-typography--body-1">{{ user.username}}</span>
+			</div>
+			<div class="mdl-grid mdl-layout-center">
+				<a class="mdl-cell mdl-cell--4-col mdl-button mdl-js-button mdl-js-ripple-effect" href="{% url 'account:edit' %}">Edit Profile</a>
+				<a class="mdl-cell mdl-cell--4-col mdl-color-text--accent mdl-button mdl-js-button mdl-js-ripple-effect" href="{% url 'password_change' %}">Change Password</a>
+			</div>
+		</div>
+	</div>
 {% endblock %}
 
