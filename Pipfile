@@ -12,9 +12,12 @@ django-dotenv = "*"
 django-allauth = "*"
 gunicorn = "*"
 django-heroku = "*"
+dj-database-url = "*"
+whitenoise = "*"
 
 
 [dev-packages]
+
 
 
 [requires]
