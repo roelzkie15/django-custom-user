@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 
     # Apps
 
-    'account.apps.AccountConfig',
+    'src.account.apps.AccountConfig',
 ]
 
 SITE_ID = 1
