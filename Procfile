@@ -1,1 +1,1 @@
-web: gunicorn src/django_custom_user.wsgi
+web: gunicorn src.django_custom_user.wsgi
