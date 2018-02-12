@@ -26,7 +26,7 @@ SECRET_KEY = 'ziv_z)ui#!)duad8i*wg54-=q8p6wj73ff_b)834ls9if@xo^m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysterious-sands-37277.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
