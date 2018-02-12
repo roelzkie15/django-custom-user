@@ -44,22 +44,24 @@
 			</div>
 			<div class="mdl-card__actions mdl-card--border mdl-typography--text-center mdl-width-100">
 				<p class="mdl-typography--subhead mdl-typography--title-color-contrast">OR</p>
-				<a href="{% provider_login_url 'github' %}"
-				   class="mdl-button mdl-color-text--grey-900 mdl-js-button mdl-js-ripple-effect">
-					GitHub
-				</a>
-				<a href="{% provider_login_url 'google' %}"
-				   class="mdl-button mdl-color-text--red-500 mdl-js-button mdl-js-ripple-effect">
-					Google+
-				</a>
-				<a href="{% provider_login_url 'twitter' %}"
-				   class="mdl-button mdl-color-text--light-blue-400 mdl-js-button mdl-js-ripple-effect">
-					Twitter
-				</a>
-				<a href="{% provider_login_url 'facebook' %}"
-				   class="mdl-button mdl-color-text--light-blue-700 mdl-js-button mdl-js-ripple-effect">
-					Facebook
-				</a>
+				<div class="mdl-padding-normal">
+					<button onclick="window.location.href='{% provider_login_url 'github' %}'"
+					   class="mdl-button mdl-color-text--white mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-color--grey-900 mdl-js-ripple-effect">
+						<i class="mdi mdi-github-circle"></i>
+					</button>
+					<button onclick="window.location.href='{% provider_login_url 'google' %}'"
+					   class="mdl-button mdl-color-text--white mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-color--red-500 mdl-js-ripple-effect">
+						<i class="mdi mdi-google"></i>
+					</button>
+					<button onclick="window.location.href='{% provider_login_url 'twitter' %}'"
+					   class="mdl-button mdl-color-text--white mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-color--light-blue-500 mdl-js-ripple-effect">
+						<i class="mdi mdi-twitter"></i>
+					</button>
+					<button onclick="window.location.href='{% provider_login_url 'facebook' %}'"
+					   class="mdl-button mdl-color-text--white mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-color--light-blue-900 mdl-js-ripple-effect">
+						<i class="mdi mdi-facebook"></i>
+					</button>
+				</div>
 			</div>
 		</div>
 		<!--<a href="{% url 'account:sign-up' %}">Sign up</a>-->
