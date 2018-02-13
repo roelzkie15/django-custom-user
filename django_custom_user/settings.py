@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ziv_z)ui#!)duad8i*wg54-=q8p6wj73ff_b)834ls9if@xo^m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -100,10 +100,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'd4l213pt3ptrl7',
-            'USER': 'gzqckewvyqnhqn',
-            'PASSWORD': 'cf6181b4e15ddb8a4cc2167d033abb7b7f55e9fc183a1c7cc1c5a03a89a48ea0',
-            'HOST': 'ec2-23-21-162-90.compute-1.amazonaws.com',
+            'NAME': 'd8mpckjfe69u22',
+            'USER': 'dfodcghlwrlazx',
+            'PASSWORD': '8b207eacb414a08e89c206f6082bd0221d5dd6e833f51365c668525df9990e0f',
+            'HOST': 'ec2-54-235-64-195.compute-1.amazonaws.com',
             'PORT': '5432',
         }
     }
