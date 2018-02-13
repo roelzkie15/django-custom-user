@@ -102,7 +102,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'd4l213pt3ptrl7',
             'USER': 'gzqckewvyqnhqn',
-            'PASSWORD': 'mypassword',
+            'PASSWORD': 'cf6181b4e15ddb8a4cc2167d033abb7b7f55e9fc183a1c7cc1c5a03a89a48ea0',
             'HOST': 'ec2-23-21-162-90.compute-1.amazonaws.com',
             'PORT': '5432',
         }
