@@ -1,5 +1,4 @@
-# django-custom-user
-
+# django-custom-
 
 ### Current Feature
 - Custom user model derived from AbstractBaseUser with email as username field.
@@ -11,6 +10,7 @@
 - Linking of multiple social account to existing email address (django-allauth)
 - Material Design
 
+Demo link [here](https://django-custom-user.herokuapp.com/).
 
 ## Installation
 
