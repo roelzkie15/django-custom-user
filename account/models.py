@@ -14,7 +14,7 @@ from allauth.socialaccount.signals import pre_social_login
 from allauth.utils import get_user_model
 
 class UserManager(BaseUserManager):
-    def _create_user(self, email, username=None, is_admin=False, is_staff=False, password=None):
+    def _create_user(self, email, username=None, is_admin=False, is_staff=False, is_active=False, password=None):
         'Method for actual creation of a user'
 
         if not email:
@@ -24,7 +24,8 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             username=username,
             is_admin=is_admin,
-            is_staff=is_staff
+            is_staff=is_staff,
+            is_active=is_active
         )
 
         user.set_password(password)
@@ -43,7 +44,7 @@ class UserManager(BaseUserManager):
         'Create a super user'
         return self._create_user(
             email=email, username=username, is_admin=True,
-            is_staff=True, password=password
+            is_staff=True, is_active=True, password=password
         )
 
 class User(AbstractBaseUser):
