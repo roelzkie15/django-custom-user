@@ -82,7 +82,7 @@ App registration to get your key and secret [here](https://developers.facebook.c
 Use your production domain name for live site.
   
 
-## Registering Social Account
+## Registering Social Applications
 
 First go to administrator login and enter your credentials for supersuser.
     
@@ -90,7 +90,7 @@ First go to administrator login and enter your credentials for supersuser.
    - Back to home page and under the `Social Account > Social applications` add a social application
    - Enter provider, name, client id and secret and select a chosen sites then click save. 
      
-Great example can be found here by [Will Vincent](https://github.com/wsvincent) [Django Allauth Tutorial](https://wsvincent.com/django-allauth-tutorial).  
+Great example can be found here [Django Allauth Tutorial](https://wsvincent.com/django-allauth-tutorial)  by [Will Vincent](https://github.com/wsvincent).  
 
 ## Acknowledgement
 
