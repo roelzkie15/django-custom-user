@@ -198,4 +198,4 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-ADMINS = (('badcoder28', config('MY_EMAIL')),)
+ADMINS = (('badcoder28', config('MY_EMAIL')),) # Your name and email
