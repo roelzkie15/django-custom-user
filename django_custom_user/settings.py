@@ -196,3 +196,6 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': ['email'],
     },
 }
+
+
+ADMINS = (('badcoder28', config('MY_EMAIL')),)
