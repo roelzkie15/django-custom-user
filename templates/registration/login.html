@@ -13,8 +13,9 @@
 				<form method="post">
 					{% csrf_token %}
 					{% for field in form %}
+
 						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-width-100">
-							<input class="mdl-textfield__input" type="text" name="{{ field.html_name }}"
+							<input class="mdl-textfield__input" type="{% if field.id_for_label == 'id_password' %}password{% else %}text{% endif %}" name="{{ field.html_name }}"
 							       id="{{ field.id_for_label }}">
 							<label class="mdl-textfield__label" for="{{ field.id_for_label }}">{{ field.label }}</label>
 						</div>
