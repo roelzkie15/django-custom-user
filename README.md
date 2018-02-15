@@ -1,4 +1,4 @@
-# django-custom-
+# django-custom-user
 
 ### Current Feature
 - Custom user model derived from AbstractBaseUser with email as username field.
