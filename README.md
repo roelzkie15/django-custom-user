@@ -12,14 +12,12 @@
 
 Demo link [here](https://django-custom-user.herokuapp.com/).
 
-## Installation
 
-
-### Dependencies
+## Dependencies
 - python3.x and higher
 - Get [pipenv](https://docs.pipenv.org/)_(I recommend this)_ for virtualenvs and package manager.
 
-### Installation
+## Installation
 
 - Clone repository
 - `$ pipenv install`
@@ -27,9 +25,9 @@ Demo link [here](https://django-custom-user.herokuapp.com/).
 - To create superuser `$ python manage.py createsuperuser`
 - Open [localhost](http://127.0.0.1:8000) url.
 
-### Creating Social Application
+## Creating Social Application
 
-#### Github
+### Github
 
 App registration to get your key and secret [here](https://github.com/settings/applications/new). 
 
@@ -37,7 +35,7 @@ Add development callback `http://127.0.0.1:8000/social-api/auth/github/login/cal
 
 Use your production domain name for live site  `http://{{ domain_name }}/social-api/auth/github/login/callback/`
 
-#### Google
+### Google
 
 App registration to get your key and secret [here](https://console.developers.google.com/apis/credentials). 
    
