@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     # Apps
 
     'account.apps.AccountConfig',
+
+    # mod-wsgi for apache production
+    'mod_wsgi.server',
 ]
 
 SITE_ID = 1
@@ -197,5 +200,4 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-
-ADMINS = (('badcoder28', config('MY_EMAIL')),) # Your name and email
+ADMINS = (('badcoder28', config('MY_EMAIL')),)  # Your name and email

@@ -17,6 +17,7 @@ whitenoise = "*"
 "psycopg2" = "*"
 "psycopg2-binary" = "*"
 python-decouple = "*"
+mod-wsgi = "*"
 
 
 [dev-packages]
